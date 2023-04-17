@@ -1,0 +1,49 @@
+I began by using the completed code from the React tic-tac-toe tutorial, before adding the time travel implementation to the game. I took the following steps in constructing my game: I created an xTurns and yTurns count to keep track of how many turns each player had finished. If there are 3 of a player’s pieces on the board, the movement rules change. 
+
+Then I wrote a function called switchNow that returned whether the movement plan should change as according to the rules. After that, I made it so whose turn it was could remove one of their pieces from the board. Then, I made it able to replace. 
+
+At this point, my game allowed the player to place their piece back anywhere. I then used an outside function called okReplace to check whether the place they wanted to put it back down was a valid position. This was a series of if statements to ensure that the piece was being replaced on the board in a valid position. 
+
+I put this check inside of my handleClick function to be sure that no values in the array were changed if they were not permitted to be. Another check that I knew I had to make was to not allow a piece to be moved if it was surrounded in all directions (basically if a piece was in a corner and was surrounded. 
+
+This would not be allowed because the piece would have no place to move. What I did to get around this problem was create a function called isTrapped. I checked if the piece was trapped before picking it up, and if it was, the handleClick function returned immediately. 
+
+The next issue I had to take into account was not leaving a piece in the middle for more than one turn unless it is a winning move. In order to make this check, I constructed  a function called nextWin. This function checked whether the user has the potential to win after picking up the piece that they chose, if there is a piece in the middle. 
+
+I used the calculateWin function in my nextWin, replacing each empty spot with either an X or an O depending on whose turn it is. I ran into many problems during this time, such as having to make sure that checking for a future win was only valid if the potential move was adjacent to the piece’s current location.
+
+For more clarification, I also commented many portions of my code. Please refer to my file for extended explanation.
+
+This was the output when I ran my nam pack -dry—run command:
+
+npm notice 
+npm notice chorus-lapilli@0.1.0
+npm notice === Tarball Contents === 
+npm notice 564B   src/App.css             
+npm notice 639B   src/index.css           
+npm notice 1.7kB  public/index.html       
+npm notice 3.9kB  public/favicon.ico      
+npm notice 528B   src/App.js              
+npm notice 246B   src/App.test.js         
+npm notice 7.3kB  src/index.js            
+npm notice 362B   src/reportWebVitals.js  
+npm notice 241B   src/setupTests.js       
+npm notice 492B   public/manifest.json    
+npm notice 817B   package.json            
+npm notice 3.4kB  README.md               
+npm notice 5.3kB  public/logo192.png      
+npm notice 9.7kB  public/logo512.png      
+npm notice 2.6kB  src/logo.svg            
+npm notice 26.9kB chorus-lapilli-0.1.0.tgz
+npm notice 67B    public/robots.txt       
+npm notice === Tarball Details === 
+npm notice name:          chorus-lapilli                          
+npm notice version:       0.1.0                                   
+npm notice filename:      chorus-lapilli-0.1.0.tgz                
+npm notice package size:  54.0 kB                                 
+npm notice unpacked size: 64.8 kB                                 
+npm notice shasum:        ba058c034f1834fe5528c5b44ca7c4bc7e9ab748
+npm notice integrity:     sha512-6uatS9h4EyIfy[...]c7KFWciR3N9Mw==
+npm notice total files:   17                                      
+npm notice 
+chorus-lapilli-0.1.0.tgz

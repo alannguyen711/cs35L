@@ -1,0 +1,48 @@
+From 486f4bd183b2b9e3355c7d0d47462951c659613d Mon Sep 17 00:00:00 2001
+From: Junio C Hamano <gitster@pobox.com>
+Date: Mon, 15 Mar 2021 15:05:04 -0700
+Subject: [PATCH] xcalloc: use CALLOC_ARRAY() when applicable
+
+These are for codebase before Git 2.31
+
+Signed-off-by: Junio C Hamano <gitster@pobox.com>
+---
+ builtin/receive-pack.c | 8 +++-----
+ t/helper/test-bloom.c  | 2 +-
+ 2 files changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/builtin/receive-pack.c b/builtin/receive-pack.c
+index ea3d0f01af..6a66687e28 100644
+--- a/builtin/receive-pack.c
++++ b/builtin/receive-pack.c
+@@ -1837,11 +1837,9 @@ static void prepare_shallow_update(struct shallow_info *si)
+ 	ALLOC_ARRAY(si->used_shallow, si->shallow->nr);
+ 	assign_shallow_commits_to_refs(si, si->used_shallow, NULL);
+ 
+-	si->need_reachability_test =
+-		xcalloc(si->shallow->nr, sizeof(*si->need_reachability_test));
+-	si->reachable =
+-		xcalloc(si->shallow->nr, sizeof(*si->reachable));
+-	si->shallow_ref = xcalloc(si->ref->nr, sizeof(*si->shallow_ref));
++	CALLOC_ARRAY(si->need_reachability_test, si->shallow->nr);
++	CALLOC_ARRAY(si->reachable, si->shallow->nr);
++	CALLOC_ARRAY(si->shallow_ref, si->ref->nr);
+ 
+ 	for (i = 0; i < si->nr_ours; i++)
+ 		si->need_reachability_test[si->ours[i]] = 1;
+diff --git a/t/helper/test-bloom.c b/t/helper/test-bloom.c
+index f0aa80b98e..eb7c011ca6 100644
+--- a/t/helper/test-bloom.c
++++ b/t/helper/test-bloom.c
+@@ -65,7 +65,7 @@ int cmd__bloom(int argc, const char **argv)
+ 		struct bloom_filter filter;
+ 		int i = 2;
+ 		filter.len =  (settings.bits_per_entry + BITS_PER_WORD - 1) / BITS_PER_WORD;
+-		filter.data = xcalloc(filter.len, sizeof(unsigned char));
++		CALLOC_ARRAY(filter.data, filter.len);
+ 
+ 		if (argc - 1 < i)
+ 			usage(bloom_usage);
+-- 
+2.27.0
+

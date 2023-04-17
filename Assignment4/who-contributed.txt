@@ -1,0 +1,13 @@
+I found the commit using the following command:
+git log -S "Even newspaper reports present contradictory information."
+
+Now, I know that the string was added during commit c12b432741eed9a422fbf99fa27af6e7a941d88b by Arthur David Olson. More information such as the date can be seen in the output. The blurb of text you see below was the output of that command.
+
+commit c12b432741eed9a422fbf99fa27af6e7a941d88b
+Author: Arthur David Olson <ado@elsie>
+Date:   Thu Dec 21 11:43:42 1995 -0500
+
+    Eggert changes
+    
+    SCCS-file: northamerica
+    SCCS-SID: 7.20

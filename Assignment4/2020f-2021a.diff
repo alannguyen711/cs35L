@@ -1,0 +1,164 @@
+diff --git a/NEWS b/NEWS
+index 19470cc..a60847b 100644
+--- a/NEWS
++++ b/NEWS
+@@ -1,5 +1,13 @@
+ News for the tz database
+ 
++Release 2021a - 2021-01-24 10:54:57 -0800
++
++  Changes to future timestamps
++
++    South Sudan changes from +03 to +02 on 2021-02-01 at 00:00.
++    (Thanks to Steffen Thorsen.)
++
++
+ Release 2020f - 2020-12-29 00:17:46 -0800
+ 
+   Change to build procedure
+diff --git a/africa b/africa
+index 59cf501..28168cf 100644
+--- a/africa
++++ b/africa
+@@ -1527,11 +1527,17 @@ Zone	Africa/Khartoum	2:10:08 -	LMT	1931
+ 			3:00	-	EAT	2017 Nov  1
+ 			2:00	-	CAT
+ 
++# From Steffen Thorsen (2021-01-18):
++# "South Sudan will change its time zone by setting the clock back 1
++# hour on February 1, 2021...."
++# from https://eyeradio.org/south-sudan-adopts-new-time-zone-makuei/
++
+ # South Sudan
+ # Zone	NAME		STDOFF	RULES	FORMAT	[UNTIL]
+ Zone	Africa/Juba	2:06:28 -	LMT	1931
+ 			2:00	Sudan	CA%sT	2000 Jan 15 12:00
+-			3:00	-	EAT
++			3:00	-	EAT	2021 Feb  1 00:00
++			2:00	-	CAT
+ 
+ # Tanzania
+ # See Africa/Nairobi.
+diff --git a/leap-seconds.list b/leap-seconds.list
+index e897a86..3198d65 100644
+--- a/leap-seconds.list
++++ b/leap-seconds.list
+@@ -204,10 +204,10 @@
+ #	current -- the update time stamp, the data and the name of the file
+ #	will not change.
+ #
+-#	Updated through IERS Bulletin C60
+-#	File expires on:  28 June 2021
++#	Updated through IERS Bulletin C61
++#	File expires on:  28 December 2021
+ #
+-#@	3833827200
++#@	3849638400
+ #
+ 2272060800	10	# 1 Jan 1972
+ 2287785600	11	# 1 Jul 1972
+@@ -252,4 +252,4 @@
+ #	the hash line is also ignored in the
+ #	computation.
+ #
+-#h 	064356a8 39268b92 76e4d5ef 3e22fae1 0cca529c
++#h 	2ab8253d d4380d28 75f01343 381504f8 8f8a4bfc
+diff --git a/tz-link.html b/tz-link.html
+index 56ef9e4..abe38d8 100644
+--- a/tz-link.html
++++ b/tz-link.html
+@@ -352,12 +352,7 @@ transferring time zone data by reference.
+ <a href="https://devguide.calconnect.org/Time-Zones/TZDS/">TZDIST
+ implementations</a> are available.
+ The <a href="https://www.ietf.org/mailman/listinfo/tzdist-bis">tzdist-bis
+-mailing list</a> discussed the Internet draft <a
+-id="TZDIST-Geolocate"
+-href="https://tools.ietf.org/html/draft-murchison-tzdist-geolocate">TZDIST
+-Geolocate Extension</a> (now expired), which let a client determine its timezone
+-from its geographic location using a <a
+-href="https://tools.ietf.org/html/rfc5870">'geo' URI</a>.</li>
++mailing list</a> discusses possible extensions.</li>
+ <li>The <a href="https://tools.ietf.org/html/rfc5545">
+ Internet Calendaring and Scheduling Core Object Specification
+ (iCalendar)</a> (Internet <abbr>RFC</abbr> 5445)
+@@ -410,11 +405,11 @@ transition in the <code><abbr>tz</abbr></code> database.</li>
+ <li>The <a href="https://howardhinnant.github.io/date/tz.html">Time Zone
+ Database Parser</a> is a
+ <a href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a> parser and
+-runtime library with API <a
+-href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0355r7.html">adopted
+-into the draft standard</a> for
++runtime library with <a
++href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0355r7.html">API</a>
++adopted by
+ <a href="https://en.wikipedia.org/wiki/C++20">C++20</a>,
+-the next iteration of the C++ standard.
++the current iteration of the C++ standard.
+ It is freely available under the
+ <abbr title="Massachusetts Institute of Technology">MIT</abbr> license.</li>
+ <li><a id="ICU" href="http://site.icu-project.org">International Components for
+@@ -627,11 +622,6 @@ It is freely available under the <abbr>GPL</abbr>.</li>
+ implementations contain a copy of a 32-bit subset of a recent
+ <code><abbr>tz</abbr></code> database in a
+ Go-specific format.</li>
+-<li><a
+-href="http://users.skynet.be/Peter.Verthez/projects/intclock/">International
+-clock (intclock)</a> is a clock that displays multiple time zones on
+-<abbr>GNU</abbr>/Linux and similar systems. It is freely available
+-under the <abbr>GPL</abbr>.</li>
+ <li>Microsoft Windows 8.1
+ and later has <code><abbr>tz</abbr></code> data and <abbr>CLDR</abbr>
+ data (mentioned <a href="#CLDR">below</a>) used by the
+@@ -677,10 +667,7 @@ licenses</a> to <code><abbr>tz</abbr></code> contributors.</li>
+ is Astrodienst's Web version of Shanks and Pottenger's out-of-print
+ time zone history atlases
+ <a href="https://www.worldcat.org/oclc/468828649">for the US</a> and
+-<a href="https://www.worldcat.org/oclc/76950459">for the world</a>,
+-now published in <a
+-href="https://astrocom.com/astrology-products/software/acs-atlas-software">software</a>
+-form by <a href="https://astrocom.com">ACS-Starcrafts</a>.
++<a href="https://www.worldcat.org/oclc/76950459">for the world</a>.
+ Although these extensive atlases
+ <a href="https://astrologynewsservice.com/opinion/how-astrologers-contributed-to-the-information-age-a-brief-history-of-time/">were
+ sources for much of the older <code><abbr>tz</abbr></code> data</a>,
+@@ -704,11 +691,13 @@ gives current time zone rules for airports served by commercial aviation.</li>
+ <section>
+ <h2 id="maps">Maps</h2>
+ <ul>
+-<li>The <a href="https://www.cia.gov/index.html">United States Central
+-Intelligence Agency (<abbr
+-title="Central Intelligence Agency">CIA</abbr>)</a> publishes a <a
+-href="https://www.cia.gov/library/publications/the-world-factbook/graphics/ref_maps/physical/pdf/standard_time_zones_of_the_world.pdf">time
+-zone map</a>; the
++<li>The <a
++href="https://www.cia.gov/the-world-factbook/maps/world-regional/">World
++and Regional Maps section</a> of <em>The World Factbook</em>, published by the
++<a href="https://www.cia.gov">US Central Intelligence
++Agency (<abbr
++title="Central Intelligence Agency">CIA</abbr>)</a>, contains a time
++zone map; the
+ <a
+ href="https://legacy.lib.utexas.edu/maps/world.html">Perry&ndash;Casta&ntilde;eda
+ Library Map Collection</a>
+@@ -734,7 +723,9 @@ where the two differ greatly. It's a bit out of date, unfortunately.</li>
+ <section>
+ <h2 id="boundaries">Time zone boundaries</h2>
+ <p>Geographical boundaries between timezones are available
+-from several <a href="https://en.wikipedia.org/wiki/Geolocation">geolocation</a>
++from several <a
++href="https://en.wikipedia.org/wiki/Internet_geolocation">Internet
++geolocation</a>
+ services and other sources.</p>
+ <ul>
+ <li><a href="https://github.com/evansiroky/timezone-boundary-builder">Timezone
+@@ -883,10 +874,6 @@ of Legal Time in Germany</a>.</dd>
+ <dd>The Interior Ministry periodically issues <a
+ href="ftp://ftp.cs.huji.ac.il/pub/tz/announcements"
+ hreflang="he">announcements (in Hebrew)</a>.</dd>
+-<dt>Italy</dt>
+-<dd>The National Institute of Metrological Research publishes a
+-<a href="http://oldsite.inrim.it/res/tf/ora_legale_i.shtml" hreflang="it">table
+-of civil time (in Italian)</a>.</dd>
+ <dt>Malaysia</dt>
+ <dd>See Singapore <a href="#Singapore">below</a>.</dd>
+ <dt>Mexico</dt>

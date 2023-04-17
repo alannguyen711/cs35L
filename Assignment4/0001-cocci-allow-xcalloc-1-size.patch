@@ -1,0 +1,30 @@
+From 1c57cc70ec26529a26392539fc888486bb89b7fd Mon Sep 17 00:00:00 2001
+From: Junio C Hamano <gitster@pobox.com>
+Date: Mon, 15 Mar 2021 17:56:07 -0700
+Subject: [PATCH] cocci: allow xcalloc(1, size)
+
+Allocating a pre-cleared single element is quite common and it is
+misleading to use CALLOC_ARRAY(); these allocations that would be
+affected without this change are not allocating an array.
+
+Signed-off-by: Junio C Hamano <gitster@pobox.com>
+---
+ contrib/coccinelle/array.cocci | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/contrib/coccinelle/array.cocci b/contrib/coccinelle/array.cocci
+index 9a17d2a121..9a4f00cb1b 100644
+--- a/contrib/coccinelle/array.cocci
++++ b/contrib/coccinelle/array.cocci
+@@ -92,7 +92,7 @@ expression n;
+ @@
+ type T;
+ T *ptr;
+-expression n;
++expression n != 1;
+ @@
+ - ptr = xcalloc(n, \( sizeof(*ptr) \| sizeof(T) \) )
+ + CALLOC_ARRAY(ptr, n)
+-- 
+2.27.0
+

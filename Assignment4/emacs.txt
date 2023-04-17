@@ -1,0 +1,37 @@
+QUESTION ONE
+I used the command
+git log --graph --all --oneline > /u/cs/ugrad/alann/35Lass4/tz/graph.txt
+which output a graph into a file called graph.txt that I could inspect. I focused on the chunk containing the line with mergepoint 7dd52b and the line with commit c00606.
+
+QUESTION TWO
+When I used the command "git branch" on my clone, the output was simply "* master". This was different from the provided SEASnet master branch, which had many many lines of output. The beginning of that output can be seen below:
+bug#38796-lossage-limit
+  comment-cache
+  concurrency-libtask
+  dima_regex_embedded_modifiers
+  elparized-core
+  emacs-23
+  emacs-24
+  emacs-25
+  emacs-26
+  emacs-27
+  feature/async-dns
+  feature/auth-source-pass
+  feature/bug#38796-lossage-limit
+  feature/byte-switch
+  feature/byte-tail-recursion
+  feature/byte-unwind-protect
+  feature/completions-highlight-modifications
+  feature/core-elpa-by-copy
+  feature/deps-download
+  feature/dll-only-windows
+  feature/etags-update
+  feature/etags_update_v2
+  feature/extend_face_id
+  feature/gnus-select
+  feature/gnus-select2
+  feature/icomplete-vertical
+  feature/integrated-elpa
+The output had the same "* master" line further down the file. When "git branch" is run with no arguments, the existing branches are listed with the current branch highlighted and starred. This means that the only branch within my cloned repository is master, which is the current branch because it is starred and highlighted. In the SEASnet repository, there are many many branches that are printed out. The master branch is this the current branch because it is highlighted and starred, like in my repository. In short, both my and SEASnet's repositories are currently in the master branch. This is the only branch in my repository, while there are many more in the SEASnet one.
+
+Another change that I found was in using the ls -al command. I noticed between my clone and the one in ~eggert/src/gnu/emacs is that the times for my clone are all the time of my download which is May 12 22:55, while the ones in the SEASnet directory are all different times (I am assuming when they were altered/uploaded). Another difference is that while my user and title "alann csugrad" are shown, the SEASnet version shows "eggert csfac".

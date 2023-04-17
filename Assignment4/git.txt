@@ -1,0 +1,7 @@
+The way I went about finding the commits was by first visiting the repository on GitHub. I then used the search bar and typed "CALLOC_ARRAY" where 96 results came up for the repository. I narrowed it down to the commits, which there were ten of. I looked through each commit manually, searching for changes made where CALLOC_ARRAY() macro replaces many uses of xcalloc() as listed in the Release Notes. I then narrowed it down to the following three commits:
+ca56dadb4b65ccaeab809d80db80a312dc00941a
+486f4bd183b2b9e3355c7d0d47462951c659613d
+1c57cc70ec26529a26392539fc888486bb89b7fd
+These are the three commits where I explicitly saw CALLOC_ARRAY replacing the uses of xcalloc(). These are the above steps I took to find the commits in which the change "CALLOC_ARRAY() macro replaces many uses of xcalloc()" happened.
+
+After finding each of the commit ID's, I cloned the repository onto my own SEASnet server. I then ran the command git format-patch -1 <commitID> as found in the hints slides. This created three different patch files which I attached in my tarball file. 
